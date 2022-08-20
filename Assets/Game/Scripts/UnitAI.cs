@@ -85,7 +85,6 @@ public class UnitAI : MonoBehaviour
         {
             SelectEnemy();
         }
-
     }
 
     private IEnumerator Death()

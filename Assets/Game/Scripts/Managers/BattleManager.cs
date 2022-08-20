@@ -8,7 +8,7 @@ public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
     public int level;
-    private GameObject[] _enemyLevel;
+    [SerializeField] private GameObject[] enemyList;
     
     public void Awake()
     {
@@ -25,9 +25,9 @@ public class BattleManager : MonoBehaviour
 
     public void NextBattle()
     { 
-        _enemyLevel[level].SetActive(false);
+        enemyList[level].SetActive(false);
         level++;
-        _enemyLevel[level].SetActive(true);
+        enemyList[level].SetActive(true);
     }
 
     private void StartBattle()
