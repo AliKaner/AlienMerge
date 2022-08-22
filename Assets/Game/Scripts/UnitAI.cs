@@ -20,7 +20,7 @@ public class UnitAI : MonoBehaviour
     [SerializeField] private UnitData unitData;
     
     private Queue<GameObject> Targets;
-    private NavMeshAgent _navMeshAgent;
+    [SerializeField] private NavMeshAgent _navMeshAgent;
     private int _health;
     private int _attack;
     private float _attackSpeed;

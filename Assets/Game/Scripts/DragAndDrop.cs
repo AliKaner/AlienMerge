@@ -7,15 +7,16 @@ public class DragAndDrop : MonoBehaviour
     private GameObject _target;
     public Vector3 screenSpace;
     public Vector3 offset;
-    
+
     int layerMask = LayerMask.GetMask("Unit");
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo;
             _target = GetClickedObject(out hitInfo);
-            
+
             if (_target != null)
             {
                 _mouseState = true;
@@ -49,7 +50,7 @@ public class DragAndDrop : MonoBehaviour
     {
         GameObject target = null;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray.origin, ray.direction * 10, out hit,layerMask))
+        if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
         {
             target = hit.collider.gameObject;
             target.GetComponent<Collider>().isTrigger = false;

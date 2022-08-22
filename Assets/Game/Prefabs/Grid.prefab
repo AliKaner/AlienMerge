@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601643098399957476}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.48550016, y: 0.49, z: -0.41200003}
   m_LocalScale: {x: 0.11111112, y: 0.022222228, z: 0.11111112}
   m_ConstrainProportionsScale: 0
@@ -94,7 +94,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601643098399957476}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 9.225308, z: 1}
@@ -111,9 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26432dba60ce4a46aa6a131f02168f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGridEmpty: 0
-  meleeUnit: {fileID: 0}
-  rangedUnit: {fileID: 0}
+  isGridEmpty: 1
+  meleeUnit: {fileID: 3134721336715867668, guid: fd53ac09f1540af4ab23fc11e715f087,
+    type: 3}
+  rangedUnit: {fileID: 5749923134786320334, guid: 0b1379bc182668142a65c2bd8805829c,
+    type: 3}
 --- !u!1 &2807708265403475817
 GameObject:
   m_ObjectHideFlags: 0
