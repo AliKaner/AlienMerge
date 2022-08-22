@@ -12,6 +12,7 @@ TagManager:
   - Grid
   - Ranged
   - Melee
+  - Ally
   layers:
   - Default
   - TransparentFX

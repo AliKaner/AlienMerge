@@ -1,54 +1,69 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GoldManager : MonoBehaviour
 {
-    public TextMeshProUGUI text;
- 
-    private int _gold;
+    public static GoldManager Instance;
+    
+    public TextMeshProUGUI totalGoldText;
+    public TextMeshProUGUI meleeUnitPriceText;
+    public TextMeshProUGUI rangedUnitPriceText;
+    
     private bool _wasInitialized;
- 
-    private const string Key = "Gold";
- 
-    private void OnEnable()
-    {
-        _gold = PlayerPrefs.GetInt(Key, 0);
-        _wasInitialized = true;
-    }
- 
-    private void OnDisable()
-    {
-        PlayerPrefs.SetInt(Key, _gold);
-        _wasInitialized = false;
-    }
 
-    public void ChangeGold(int amount)
+    [SerializeField] private int meleeUnitPrice;
+    [SerializeField] private int rangedUnitPrice;
+    [SerializeField] private int gold;
+    
+    private const string Golds = "Gold";
+    
+    public void Awake()
     {
-        _gold += amount;
-        PlayerPrefs.SetInt(Key, _gold);
-    }
- 
-    private void OnGoldChanged()
-    {
-        text.text = "Gold: " + _gold;
-    }
- 
-    public int Gold
-    {
-        get => _gold;
-        set
+        if (Instance == null )
         {
-            if (_wasInitialized == false)
-            {
-                Debug.LogError("Cannot set gold before initialization.");
-                return;
-            }
-
-            if (_gold == value) return;
-            _gold = value;
-            OnGoldChanged();
+            Instance =this;
         }
+        else if (Instance != this)
+        {
+            Debug.LogError($"Another instance of {GetType()} already exist! Destroying self...");
+            Destroy(this);
+        }
+    }
+
+    private void Start()
+    {
+        PriceTagRefresh();
+    }
+    
+    public void GainGold(int amout)
+    {
+        gold += amout;
+        PriceTagRefresh();
+    }
+
+    public void BuyMeleeUnit()
+    {
+        gold -= meleeUnitPrice;
+        meleeUnitPrice += 5;
+        PriceTagRefresh();
+    }
+
+    public void BuyRangedUnit()
+    {
+        gold -= rangedUnitPrice;
+        rangedUnitPrice += 5;
+        PriceTagRefresh();
+    }
+
+    private void PriceTagRefresh()
+    {
+        Debug.Log("GOLD");
+        meleeUnitPriceText.text = meleeUnitPrice.ToString();
+        rangedUnitPriceText.text = rangedUnitPrice.ToString();
+        totalGoldText.text = gold.ToString();
     }
 }

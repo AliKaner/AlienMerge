@@ -63,7 +63,7 @@ ModelImporter:
       - time: 0.32645324
         functionName: MeleeAttack
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 9ed3e6e3d72686a4788bd84878356e47,
+        objectReferenceParameter: {fileID: 11500000, guid: 246465eed88de624f82a827500a6b345,
           type: 3}
         floatParameter: 0
         intParameter: 0

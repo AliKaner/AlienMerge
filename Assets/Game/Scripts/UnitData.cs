@@ -12,7 +12,7 @@ public class UnitData : ScriptableObject
     public int health;
     public int level;
     public TeamCategory unitTeam;
-    public ClassCategory unitClass;
-    public enum TeamCategory { Enemy, Soldier }
-    public enum ClassCategory{ Melee, Ranged }
-} 
+    public TypeCategory unitType;
+    public enum TeamCategory { Enemy,Ally }
+    public enum TypeCategory { Melee,Ranged}
+}

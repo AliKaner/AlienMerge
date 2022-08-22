@@ -9,6 +9,7 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance;
     public int level;
     [SerializeField] private GameObject[] enemyList;
+    public GridManager gridManager;
     
     public void Awake()
     {
@@ -25,13 +26,28 @@ public class BattleManager : MonoBehaviour
 
     public void NextBattle()
     { 
-        enemyList[level].SetActive(false);
+        Destroy(enemyList[level]);
         level++;
         enemyList[level].SetActive(true);
+        GoldManager.Instance.GainGold(100*level);
+        GameManager.Instance.SetGameState(GameState.Shop);
+        
     }
 
-    private void StartBattle()
+    public void StartBattle()
     {
-        FindObjectsOfType<UnitAI>().Select(unit => unit.isActive = true);
+        Debug.Log("DNS");
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            enemy.GetComponent<AI>().enabled = true;
+        }
+        var alies = GameObject.FindGameObjectsWithTag("Ally");
+        foreach (var enemy in alies)
+        {
+            enemy.GetComponent<AI>().enabled = true;
+        }
+        GameManager.Instance.SetGameState(GameState.Battle);
     }
+    
 }

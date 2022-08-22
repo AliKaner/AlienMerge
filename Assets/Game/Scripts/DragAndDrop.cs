@@ -8,7 +8,6 @@ public class DragAndDrop : MonoBehaviour
     public Vector3 screenSpace;
     public Vector3 offset;
     
-    int layerMask = LayerMask.GetMask("Unit");
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -49,6 +48,7 @@ public class DragAndDrop : MonoBehaviour
     {
         GameObject target = null;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var layerMask = LayerMask.GetMask("Grid");
         if (Physics.Raycast(ray.origin, ray.direction * 10, out hit,layerMask))
         {
             target = hit.collider.gameObject;

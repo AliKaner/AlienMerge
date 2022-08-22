@@ -16,20 +16,30 @@ public class GameManager: MonoBehaviour
 {
     public static GameManager Instance;
     
-    private GameState _currentGameState;
+    public GameState currentGameState = GameState.Shop;
 
-    private void Awake()
+    public  GameObject controller;
+    public void Awake()
     {
-        Instance ??= this;
+        if (Instance == null )
+        {
+            Instance =this;
+        }
+        else if (Instance != this)
+        {
+            Debug.LogError($"Another instance of {GetType()} already exist! Destroying self...");
+            Destroy(this);
+        }
     }
 
     private void Update()
     {
-        switch (_currentGameState)
+        switch (currentGameState)
         {
             case GameState.Battle:
-                UIManager.Instance.ResetUI(); 
-                FindObjectsOfType<Mergable>().Select(merge => merge.isInBattle = true);
+                controller.SetActive(false);
+                UIManager.Instance.ResetUI();
+                CameraManager.Instance.SetBattleCamera();
                 break;
             case GameState.Win:
                 UIManager.Instance.SetUIType(UIType.Win);
@@ -39,15 +49,15 @@ public class GameManager: MonoBehaviour
                 UIManager.Instance.SetUIType(UIType.Lose);
                 break;
             case GameState.Shop:
+                controller.SetActive(true);
                 UIManager.Instance.SetUIType(UIType.Shop);
-                break;
-            default:
+                CameraManager.Instance.SetShopCamera();
                 break;
         }
     }
 
     public void SetGameState(GameState state)
     {
-        _currentGameState = state;
+        currentGameState = state;
     }
 }

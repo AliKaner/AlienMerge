@@ -10,20 +10,20 @@ public class GridManager : MonoBehaviour
     {
         foreach (var t in playerGrids)
         {
-            if (t.isGridEmpty == true)
+            if (t.isEmpty)
             {
-                t.MeleeUnitSpawn();
+                t.AddMeleeUnit();
                 break;
             }
         }
     }
     public void LocateRangedUnit()
     {
-        for (var i = 0; i < playerGrids.Length; i++)
+        foreach (var t in playerGrids)
         {
-            if (playerGrids[i].isGridEmpty == true)
+            if (t.isEmpty)
             {
-                playerGrids[i].RangedUnitSpawn();
+                t.AddRangedUnit();
                 break;
             }
         }
