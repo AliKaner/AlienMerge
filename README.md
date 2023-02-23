@@ -8,5 +8,5 @@ Alpin - Elif -Nami
 
 -Dev-
 
-Ali - Ömer - Selehattin
+Ali
  
